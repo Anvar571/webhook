@@ -33,7 +33,6 @@ bot.help((ctx) => {
     })
 })
 
-
 app.get("/", (req, res) => {
   res.status(200).json({ ok: "true", message: "home page" });
 });
@@ -49,8 +48,9 @@ app.post("/webhook", async (req, res) => {
 
       const botToken = process.env.TOKEN;
       const chatId = process.env.CHAT_ID;
-      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?text=${message}`;
       await axios.get(telegramUrl);
+
     } else if (payload.action == "edited") {
       const title = payload.issue.body;
       const url = payload.issue.html_url;
@@ -60,8 +60,9 @@ app.post("/webhook", async (req, res) => {
 
       const botToken = process.env.TOKEN;
       const chatId = process.env.CHAT_ID;
-      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?text=${message}`;
       await axios.get(telegramUrl);
+
     } else if (payload.action == "deleted") {
       const title = payload.issue.title;
       
@@ -69,8 +70,9 @@ app.post("/webhook", async (req, res) => {
 
       const botToken = process.env.TOKEN;
       const chatId = process.env.CHAT_ID;
-      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?text=${message}`;
       await axios.get(telegramUrl);
+
     } else if (payload.action == "created") {
       const issuename = payload.issue.title;
       const url = payload.issue.html_url;
@@ -80,7 +82,7 @@ app.post("/webhook", async (req, res) => {
 
       const botToken = process.env.TOKEN;
       const chatId = process.env.CHAT_ID;
-      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?text=${message}`;
       await axios.get(telegramUrl);
     } else {
 
@@ -88,7 +90,7 @@ app.post("/webhook", async (req, res) => {
 
       const botToken = process.env.TOKEN;
       const chatId = process.env.CHAT_ID;
-      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?text=${message}`;
       await axios.get(telegramUrl);
     }
 
@@ -99,5 +101,5 @@ app.post("/webhook", async (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Webhook server listening on port 3000");
+  console.log("Webhook server listening on port 5000");
 });
