@@ -45,7 +45,6 @@ bot.help((ctx) => {
     })
 })
 
-bot.launch();
 
 app.get("/", (req, res) => {
   res.status(200).json({ ok: "true", message: "home page" });
@@ -86,13 +85,11 @@ app.post("/webhook", async (req, res) => {
         bot.telegram.sendMessage(chatId, message);
       }
 
-
-
     } else if (payload.action == "created") {
       const issuename = payload.issue.title;
       const url = payload.issue.html_url;
       const body = payload.comment.body;
-
+      
       const message = `${issuename} nomili issuega \nyangi comment qo'shildi \n${body}\n Url: ${url}`;
 
       for (let chatId of chatuserids){
@@ -114,6 +111,8 @@ app.post("/webhook", async (req, res) => {
     res.status(400).json(error);
   }
 });
+
+bot.launch();
 
 app.listen(5000, () => {
   console.log("Webhook server listening on port 5000");
