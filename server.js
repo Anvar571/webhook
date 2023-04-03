@@ -1,7 +1,11 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 
 const app = express();
+app.use(express.json())
+app.use(cors());
+app.use(express.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
   res.status(200).json({ ok: "true", message: "home page" });
@@ -11,6 +15,7 @@ app.post("/webhook", async (req, res) => {
   try {
     const payload = req.body;
     console.log(payload);
+    console.log(req);
     //   if (payload.action === 'opened') {
     //     const title = payload.issue.title;
     //     const url = payload.issue.html_url;
@@ -20,7 +25,7 @@ app.post("/webhook", async (req, res) => {
     //     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
     //     await axios.get(telegramUrl);
     //   }
-    //   res.status(200).end();
+      res.status(200).json({message: "ok"});
   } catch (error) {
     console.log(error);
   }
