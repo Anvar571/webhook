@@ -24,8 +24,15 @@ bot.start((ctx) => {
   });
 });
 
-// Start the bot
-bot.launch();
+bot.help((ctx) => {
+  const chatid = ctx.chat.id;
+    
+    const messageText = "Salom bu bot sizga githubdagi o'zgarishlar haqida xabar berib turadi";
+    ctx.telegram.sendMessage(chatid, messageText).catch(err => {
+      console.log("Error", err);
+    })
+})
+
 
 app.get("/", (req, res) => {
   res.status(200).json({ ok: "true", message: "home page" });
