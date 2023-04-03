@@ -4,7 +4,7 @@ const axios = require('axios');
 const app = express();
 
 app.get("/" , (req, res) => {
-    res.status(200).json({message: "home page"})
+    res.status(200).json({ok: "true", message: "home page"})
 })
 
 app.post('/webhook', async (req, res) => {
