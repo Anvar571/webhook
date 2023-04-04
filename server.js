@@ -8,7 +8,14 @@ const path = require("path");
 
 const token = process.env.TOKEN;
 
-const bot = new Telegraf(token);
+const bot = new Telegraf(token, {
+  telegram: { 
+    agent: null,
+    webhookReply: true,
+    timeout: 5000 // set the timeout to 5 seconds
+  }
+});
+
 const chatuserids = [];
 
 const app = express();
