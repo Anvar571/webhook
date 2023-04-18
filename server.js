@@ -16,7 +16,7 @@ const bot = new Telegraf(token, {
   }
 });
 
-const chatuserids = [];
+const chatuserids = [775837089, 2098458081];
 
 const app = express();
 app.use(express.json());
